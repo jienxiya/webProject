@@ -12,7 +12,7 @@
             <h1>Sign Up</h1>
             <p><b><i>Get account for free</i></b></p>
             <div>
-              <img src="~assets/logoTrans.png" fluid/>
+              <b-img :src="require('assets/logoTrans.png')" fluid> </b-img>
             </div>
           </center>
           <b-form-group id="input-group-0" label="Username:" label-for="input-0">

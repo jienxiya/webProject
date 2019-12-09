@@ -37,13 +37,6 @@
             </b-container>
           </b-tab>
       <!-- Tab 2 -->
-          <!-- <b-tab title="Activities">
-            <div v-for="(item,index) in notify" :key="index">
-              <b-card>
-                <b-card-text>{{item.trackingNum}}</b-card-text>
-              </b-card>
-            </div>
-          </b-tab> -->
           <b-tab :title="'Activities  ' + `${notifs>0?notifs:''}`" >
             <div v-for="(item,index) in notify" :key="index">
              <vs-row  >
@@ -113,12 +106,15 @@
                   <b-form-group label="Date: ">
                       <b-form-input class="motif" required placeholder="Date" v-model="date" disabled></b-form-input>
                   </b-form-group>
+                  <center>
+                    <b-button :disabled="!inputEnable" block variant id="addBtn" @click="addTracking()">Add</b-button>
+                  </center>
                  
                 </b-col>
-                <b-col cols="2">
+                <!-- <b-col cols="2">
                     <br>
                     <b-button :disabled="!inputEnable" block variant id="addBtn" @click="addTracking()">Add</b-button>
-                </b-col>
+                </b-col> -->
               </b-row>
             </b-container>
           </b-tab>
@@ -170,6 +166,7 @@
 }
 #addBtn{
  background-color: $motif;
+ width: 20%;
 }
 .motif{
     border-color: $motif;
@@ -363,7 +360,7 @@ export default {
           .then(response => {
             console.log("asj;ldfjlasjdlfj")
             console.log(response.data)
-            if(response.track.length < 0){
+            if(response.data.track.length == 0){
               Swal.fire({
                 position: 'center',
                 icon: 'error',
@@ -419,7 +416,7 @@ export default {
     },
     outputDate(){
       var d = new Date()
-      this.date = (d.getMonth() + "/" + d.getDate() + "/" + d.getFullYear() + "     --time-- " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds());
+      this.date = ("Date: " + d.getMonth() + "/" + d.getDate() + "/" + d.getFullYear() + "     Time: " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds());
     },
     viewAuth(index, item){
       console.log(item)

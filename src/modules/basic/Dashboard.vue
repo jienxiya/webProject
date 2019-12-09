@@ -36,6 +36,11 @@
             </b-container>
           </b-tab>
            <b-tab :title="'Activities  ' + `${notifs>0?notifs:''}`" >
+             <!-- <span aria-haspopup="true" aria-expanded="true">
+               <span>
+                   <label class="notifications badge-danger">{{notifs>0?notifs:''}}</label>
+               </span>
+             </span> -->
             <div v-for="(item,index) in notify" :key="index">
              <vs-row  >
                 <vs-col  vs-type="flex" vs-w="12">
@@ -146,6 +151,7 @@ const axios = require('axios')
 export default {
    mounted(){
       this.managePusher();
+      this.getAllNotification();
       setTimeout( () => {
         this.retrieve( response => {
           if(response.data.partner.length > 0){
